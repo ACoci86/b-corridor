@@ -1,0 +1,2172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>B Corridor – Protecting Biodiversity in Waterford</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Special+Elite&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    :root {
+      --paper: #F9F8F4;
+      --bg-page: #F7F3EA;
+      --text-main: #1F2A24;
+      --text-muted: #6F675C;
+      --green: #5EAF81;
+      --green-dark: #4B956C;
+      --green-soft: #DDEBDD;
+      --brown: #8A6C49;
+      --brown-dark: #74593C;
+      --blue-accent: #81CAE5;
+      --cream: #F3F0E8;
+      --btn-border: #8A6C49;
+      --shadow-soft: 0 18px 40px rgba(43, 58, 73, 0.12);
+      --shadow-deep: 0 22px 46px rgba(43, 58, 73, 0.18);
+      --radius-pill: 999px;
+      --paper-texture: url("https://www.transparenttextures.com/patterns/handmade-paper.png");
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Special Elite", serif;
+      background-color: var(--paper);
+      background-image: var(--paper-texture);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    section {
+      scroll-margin-top: 96px;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: min(1240px, calc(100% - 64px));
+      margin-inline: auto;
+    }
+
+    h1,
+    h2,
+    h3,
+    .logo-name {
+      font-family: "Cormorant Garamond", serif;
+    }
+
+    /* =============================================
+       HEADER
+    ============================================= */
+    header {
+      padding-top: 28px;
+      padding-bottom: 40px;
+      position: relative;
+      background-color: var(--paper);
+      background-image: var(--paper-texture);
+      z-index: 200;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 64px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .logo-img {
+      height: 90px;
+      width: auto;
+    }
+
+    /* Centered nav on desktop */
+    nav {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .nav-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 36px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .nav-link {
+      position: relative;
+      padding-bottom: 6px;
+      text-decoration: none;
+      transition: color 0.35s ease;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--brown);
+      border-radius: 999px;
+      transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .nav-link:hover {
+      color: var(--brown);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    /* =============================================
+       BUTTONS
+    ============================================= */
+    .btn {
+      border-radius: var(--radius-pill);
+      padding: 0.75rem 1.6rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      border: 1px solid transparent;
+      background: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      font-family: "Special Elite", serif;
+      transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-solid {
+      border-color: var(--brown);
+      background-color: var(--brown);
+      color: var(--cream);
+      box-shadow: 0 14px 28px rgba(138, 108, 73, 0.22);
+    }
+
+    .btn-solid:hover {
+      background-color: var(--brown-dark);
+      border-color: var(--brown-dark);
+      transform: translateY(-1px);
+    }
+
+    /* =============================================
+       HAMBURGER – Brown circle, GREEN lines
+    ============================================= */
+    .hamburger {
+      display: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1.5px solid var(--brown);
+      background: rgba(138, 108, 73, 0.06);
+      cursor: pointer;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 0;
+      transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+      flex-shrink: 0;
+      z-index: 210;
+    }
+
+    .hamburger:hover {
+      background-color: rgba(138, 108, 73, 0.12);
+      transform: scale(1.05);
+    }
+
+    .hamburger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background-color: var(--green);
+      border-radius: 2px;
+      transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.25s ease;
+    }
+
+    .hamburger.is-open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.is-open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Close button inside mobile menu */
+    .mobile-close-btn {
+      display: none;
+      position: absolute;
+      top: 28px;
+      right: 28px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1.5px solid var(--brown);
+      background: rgba(138, 108, 73, 0.06);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      z-index: 220;
+      transition: background-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .mobile-close-btn:hover {
+      background-color: rgba(138, 108, 73, 0.12);
+      transform: scale(1.05);
+    }
+
+    .mobile-close-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--green);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+    }
+
+    /* Mobile menu overlay */
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(31, 42, 36, 0.3);
+      backdrop-filter: blur(4px);
+      z-index: 190;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .mobile-menu-overlay.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* =============================================
+       HERO
+    ============================================= */
+    .hero {
+      text-align: center;
+      position: relative;
+      overflow: visible;
+    }
+
+    .hero-bee {
+      position: absolute;
+      left: -60px;
+      top: -30px;
+      width: 300px;
+      height: auto;
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    .hero-butterfly {
+      position: absolute;
+      right: -40px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 190px;
+      height: auto;
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
+    .hero-title {
+      font-weight: 500;
+      font-size: clamp(2.8rem, 5vw, 3.8rem);
+      margin: 0 0 24px;
+      color: var(--text-main);
+    }
+
+    .hero-text {
+      margin: 0 auto 38px;
+      max-width: 720px;
+      font-size: 1.05rem;
+      line-height: 2;
+      color: var(--text-muted);
+    }
+
+    .hero-cta,
+    .missions-btn,
+    .partners-btn,
+    .news-bottom-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: var(--radius-pill);
+      padding: 0.8rem 1.9rem;
+      border: 1px solid var(--brown);
+      background-color: transparent;
+      background-image: var(--paper-texture), linear-gradient(to right, #f9f8f4, #f5efe6);
+      cursor: pointer;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      color: var(--brown);
+      box-shadow: var(--shadow-soft);
+      font-family: "Special Elite", serif;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+
+    .hero-cta:hover,
+    .missions-btn:hover,
+    .partners-btn:hover,
+    .news-bottom-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-deep);
+    }
+
+    .missions-btn-arrow,
+    .partners-btn-arrow,
+    .news-bottom-btn-arrow {
+      font-size: 0.9rem;
+    }
+
+    /* =============================================
+       GRASS STRIP
+    ============================================= */
+    .grass-strip {
+      height: 180px;
+      background-image: url("assets/pexels-didsss-1548128.jpg");
+      height: 440px;
+      background-size: cover;
+      background-position: center 65%;
+      background-repeat: no-repeat;
+      margin-top: -30px;
+    }
+
+    /* =============================================
+       MISSIONS / ABOUT
+    ============================================= */
+    .missions-section {
+      padding: 140px 0 160px;
+      background-color: var(--paper);
+      background-image: var(--paper-texture);
+    }
+
+    .missions-heading {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .missions-title {
+      font-weight: 500;
+      font-size: 2.8rem;
+      margin: 0 0 12px;
+      color: var(--text-main);
+    }
+
+    .missions-subtitle {
+      margin: 0;
+      font-size: 0.94rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .missions-layout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 100px;
+    }
+
+    .missions-visual {
+      flex: 0 0 576px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .missions-image-circle {
+      width: 576px;
+      height: 576px;
+      border-radius: 50%;
+      background-image: url("assets/bcorridorgroup.jpg");
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 26px 60px rgba(94, 175, 129, 0.2);
+    }
+
+    .missions-content {
+      max-width: 470px;
+    }
+
+    .missions-block-title {
+      font-weight: 500;
+      font-size: 2rem;
+      margin: 0 0 22px;
+      color: var(--brown);
+    }
+
+    .missions-text {
+      margin: 0 0 32px;
+      font-size: 1.02rem;
+      line-height: 2;
+      color: var(--text-muted);
+    }
+
+    /* =============================================
+       BIODIVERSITY
+    ============================================= */
+    .biodiversity-section {
+      background-color: var(--green);
+      padding: 140px 0 150px;
+    }
+
+    .biodiversity-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 100px;
+      color: var(--cream);
+    }
+
+    .biodiversity-text {
+      max-width: 480px;
+    }
+
+    .biodiversity-title {
+      font-weight: 500;
+      font-size: 2.6rem;
+      margin: 0 0 22px;
+      color: var(--cream);
+    }
+
+    .biodiversity-body {
+      margin: 0 0 36px;
+      font-size: 1.02rem;
+      line-height: 2;
+      color: rgba(243, 240, 232, 0.92);
+    }
+
+    .biodiversity-btn,
+    .projects-bottom-btn,
+    .engage-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: var(--radius-pill);
+      padding: 0.8rem 1.9rem;
+      border: 1px solid var(--brown);
+      background-color: var(--brown);
+      color: var(--cream);
+      cursor: pointer;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      font-family: "Special Elite", serif;
+      box-shadow: 0 18px 40px rgba(116, 89, 60, 0.25);
+      transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .biodiversity-btn:hover,
+    .projects-bottom-btn:hover,
+    .engage-btn:hover {
+      background-color: var(--brown-dark);
+      border-color: var(--brown-dark);
+      transform: translateY(-2px);
+    }
+
+    .biodiversity-btn-arrow,
+    .projects-bottom-btn-arrow,
+    .engage-btn-arrow {
+      font-size: 0.9rem;
+    }
+
+    .biodiversity-visual {
+      flex: 0 0 576px;
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .biodiversity-circle-wrap {
+      position: relative;
+      width: 576px;
+      height: 576px;
+    }
+
+    .biodiversity-image-circle {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-image: url("assets/creating_safe_habitats.jpg");
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 26px 60px rgba(31, 42, 36, 0.3);
+    }
+
+    /* =============================================
+       MAP
+    ============================================= */
+    .map-section {
+      background-color: var(--paper);
+      background-image: var(--paper-texture);
+      padding: 140px 0 170px;
+    }
+
+    .map-heading {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .map-title {
+      font-weight: 500;
+      font-size: 2.7rem;
+      margin: 0 0 16px;
+      color: var(--text-main);
+    }
+
+    .map-subtitle {
+      margin: 0 auto;
+      max-width: 640px;
+      font-size: 1.02rem;
+      line-height: 2;
+      color: var(--text-muted);
+    }
+
+    .map-placeholder {
+      background-color: rgba(255, 255, 255, 0.6);
+      background-image: var(--paper-texture);
+      border: 2px dashed var(--brown);
+      border-radius: 16px;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      transition: border-color 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.5s ease;
+    }
+
+    .map-placeholder:hover {
+      border-color: var(--green);
+      box-shadow: 0 0 0 4px rgba(94, 175, 129, 0.1);
+    }
+
+    .map-placeholder img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+    }
+
+    /* =============================================
+       PARTNERS
+    ============================================= */
+    .partners-section {
+      background-color: var(--paper);
+      background-image: var(--paper-texture);
+      padding: 50px 0 110px;
+    }
+
+    .partners-heading {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .partners-title {
+      font-weight: 500;
+      font-size: 2.7rem;
+      margin: 0 0 12px;
+      color: var(--text-main);
+    }
+
+    .partners-subtitle {
+      margin: 0;
+      font-size: 0.96rem;
+      color: var(--text-muted);
+    }
+
+    .partners-logos {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 28px;
+      margin-bottom: 50px;
+    }
+
+    .partner-card {
+      background-color: rgba(255, 255, 255);
+      background-image: var(--paper-texture);
+      border: 1px solid rgba(138, 108, 73, 0.14);
+      border-radius: 8px;
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      box-shadow: 0 14px 28px rgba(31, 42, 36, 0.08);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      min-height: 200px;
+    }
+
+    .partner-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(31, 42, 36, 0.14);
+    }
+
+    .partner-logo-img {
+      width: 168px;
+      height: 120px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .partner-community-icon {
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .partner-community-icon svg {
+      width: 72px;
+      height: 72px;
+    }
+
+    .partner-badge {
+      font-size: 0.88rem;
+      color: var(--brown);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .partners-cta-wrapper {
+      text-align: center;
+    }
+
+    /* =============================================
+       PROJECTS / ACTIONS
+    ============================================= */
+    .projects-section {
+      background-color: var(--paper);
+      background-image: var(--paper-texture);
+      padding: 0 0 110px;
+      margin-bottom: 40px;
+    }
+
+    .projects-shell {
+      width: min(1120px, 100% - 64px);
+      margin: 0 auto;
+      background-color: var(--green);
+      border-radius: 32px;
+      padding: 64px 58px 56px;
+      box-shadow: 0 28px 60px rgba(94, 175, 129, 0.2);
+      color: var(--cream);
+      position: relative;
+    }
+
+    .projects-header {
+      text-align: center;
+      margin-bottom: 44px;
+    }
+
+    .projects-title {
+      font-weight: 500;
+      font-size: 2.7rem;
+      margin: 0 0 12px;
+      color: var(--cream);
+    }
+
+    .projects-subtitle {
+      margin: 0;
+      font-size: 0.96rem;
+      color: rgba(243, 240, 232, 0.92);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 26px;
+      margin-bottom: 40px;
+    }
+
+    .project-card {
+      background-color: var(--paper);
+      background-image: var(--paper-texture);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 18px 32px rgba(31, 42, 36, 0.16);
+      color: var(--text-main);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 26px 48px rgba(31, 42, 36, 0.22);
+    }
+
+    .project-image {
+      position: relative;
+      height: 230px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .project-image--1 {
+      background-image: url("assets/signage.jpg");
+    }
+
+    .project-image--2 {
+      background-image: url("assets/hedgerow-02.jpg");
+    }
+
+    .project-image--3 {
+      background-image: url("assets/giy-01.jpg");
+    }
+
+    .project-image--4 {
+      background-image: url("assets/grace_workshop.jpeg");
+    }
+
+    .project-image--5 {
+      background-image: url("assets/walktalk-01.jpg");
+    }
+
+    .project-image--6 {
+      background-image: url("assets/sapling-swap.png");
+    }
+
+    .project-image--7 {
+      background-image: url("assets/WhatsApp Group Knowledge Sharing.jpg");
+    }
+
+    .project-image--8 {
+      background-image: url("assets/pollinator-02.jpg");
+    }
+
+    .project-image--9 {
+      background-image: url("assets/creating_safe_habitats.jpg");
+    }
+
+    .project-image--10 {
+      background-image: url("assets/litter-picking.png");
+    }
+
+    .project-image--11 {
+      background-image: url("assets/B Corridor Walk 2.jpg");
+    }
+
+    .project-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 0.32rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      background-color: var(--brown);
+    }
+
+    .project-tag--blue {
+      background-color: var(--green-dark);
+    }
+
+    .project-body {
+      padding: 20px 22px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .project-meta {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+    }
+
+    .project-title {
+      font-size: 1.1rem;
+      margin: 0;
+      color: var(--brown);
+      line-height: 1.35;
+    }
+
+    .project-details {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.75;
+    }
+
+
+
+    .project-location {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .project-location span:first-child {
+      color: var(--text-main);
+    }
+
+    .projects-bottom-cta {
+      text-align: center;
+    }
+
+    .projects-snail {
+      position: absolute;
+      top: -147px;
+      left: -4px;
+      width: 198px;
+      height: auto;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* =============================================
+       NEWS — 4 equal columns
+    ============================================= */
+    .news-section {
+      background-color: var(--paper);
+      background-image: var(--paper-texture);
+      padding: 20px 0 110px;
+    }
+
+    .news-heading {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .news-title {
+      font-weight: 500;
+      font-size: 2.7rem;
+      margin: 0 0 12px;
+      color: var(--text-main);
+    }
+
+    .news-subtitle {
+      margin: 0;
+      font-size: 0.96rem;
+      color: var(--text-muted);
+    }
+
+    .news-grid {
+      width: min(1120px, 100% - 64px);
+      margin: 0 auto 42px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .news-card {
+      background-color: rgba(255, 255, 255);
+      background-image: var(--paper-texture);
+      border: 1px solid rgba(138, 108, 73, 0.14);
+      border-radius: 8px;
+      box-shadow: 0 16px 28px rgba(31, 42, 36, 0.08);
+      padding: 24px 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 200px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .news-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 38px rgba(31, 42, 36, 0.14);
+    }
+
+    /* Featured: same 1 column, highlighted */
+    .news-card--featured {
+      border: 2px solid var(--green);
+      background-color: rgba(94, 175, 129, 0.06);
+      background-image: var(--paper-texture);
+    }
+
+    .news-card--featured .news-title-card {
+      font-size: 1.05rem;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .news-card--featured .news-date {
+      color: var(--green-dark);
+      font-weight: 600;
+    }
+
+    .featured-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .featured-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--green);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(94, 175, 129, 0.5);
+        opacity: 1;
+      }
+
+      50% {
+        box-shadow: 0 0 12px 6px rgba(94, 175, 129, 0.15);
+        opacity: 0.85;
+      }
+    }
+
+    .news-tag {
+      align-self: flex-start;
+      padding: 0.32rem 0.8rem;
+      border-radius: 999px;
+      background-color: var(--brown);
+      color: var(--cream);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .news-tag--alt {
+      background-color: var(--green);
+    }
+
+    .news-tag--featured {
+      background-color: var(--green);
+      color: var(--cream);
+    }
+
+    .news-title-card {
+      font-size: 1rem;
+      color: var(--text-main);
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    .news-date {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+
+    .news-bottom-cta {
+      text-align: center;
+    }
+
+    /* =============================================
+       ENGAGE / CTA
+    ============================================= */
+    .engage-section {
+      background-color: var(--paper);
+      background-image: var(--paper-texture);
+      padding: 20px 0 0;
+    }
+
+    .engage-card-wrap {
+      width: min(900px, 100% - 64px);
+      margin: 0 auto 70px;
+    }
+
+    .engage-card {
+      background-color: var(--green);
+      border-radius: 26px;
+      padding: 66px 48px 70px;
+      box-shadow: 0 26px 54px rgba(94, 175, 129, 0.2);
+      color: var(--cream);
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .engage-card h2 {
+      font-weight: 500;
+      font-size: clamp(2.3rem, 4.2vw, 3.6rem);
+      line-height: 1.12;
+      margin: 0 auto 34px;
+      color: var(--cream);
+      max-width: 620px;
+      text-wrap: balance;
+    }
+
+    .engage-card p {
+      margin: 0 auto 38px;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(243, 240, 232, 0.92);
+      max-width: 620px;
+    }
+
+    .engage-planting {
+      position: absolute;
+      bottom: -72px;
+      right: -20px;
+      width: 248px;
+      height: auto;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* =============================================
+       FOOTER – Original paper bg, no Explore column, no Privacy
+    ============================================= */
+    .site-footer {
+      border-top: 1px solid rgba(138, 108, 73, 0.22);
+      padding: 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      background-color: var(--paper);
+      background-image: var(--paper-texture);
+      margin-top: 20px;
+    }
+
+    .site-footer-inner {
+      width: min(1240px, calc(100% - 64px));
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 0.9fr);
+      gap: 32px;
+      padding: 56px 0 34px;
+      border-bottom: 1px solid rgba(138, 108, 73, 0.12);
+      align-items: start;
+    }
+
+    .footer-brand,
+    .footer-connect,
+    .footer-credits {
+      min-width: 0;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer-logo-img {
+      height: 60px;
+      width: auto;
+    }
+
+    .footer-tagline {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      max-width: 28rem;
+    }
+
+    .footer-heading {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin: 0 0 16px;
+      color: var(--text-main);
+    }
+
+    .footer-connect {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-contact-list,
+    .footer-credit-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .footer-contact-item,
+    .footer-credit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.7;
+    }
+
+    .footer-contact-item svg,
+    .footer-credit-item svg {
+      flex: 0 0 18px;
+      margin-top: 3px;
+      color: var(--brown);
+    }
+
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(138, 108, 73, 0.3);
+      color: var(--brown);
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .footer-social-link:hover {
+      background-color: var(--brown);
+      color: var(--cream);
+      border-color: var(--brown);
+      transform: translateY(-3px);
+    }
+
+    .footer-link {
+      color: var(--brown);
+      word-break: break-word;
+    }
+
+    .footer-link:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 18px 0 26px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      opacity: 0.82;
+    }
+
+    /* =============================================
+       SHOW / HIDE TOGGLE
+    ============================================= */
+    .partners-logos--hidden,
+    .projects-grid--hidden,
+    .news-grid--hidden {
+      display: none;
+    }
+
+    .partners-logos--hidden.is-visible,
+    .projects-grid--hidden.is-visible,
+    .news-grid--hidden.is-visible {
+      display: grid;
+      animation: fadeSlideIn 0.45s ease forwards;
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =============================================
+       SCROLL REVEAL
+    ============================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .reveal.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =============================================
+       TABLET (max-width: 960px)
+    ============================================= */
+    @media (max-width: 960px) {
+      .hamburger {
+        display: flex;
+      }
+
+      .header-actions {
+        display: none;
+      }
+
+      .header-inner {
+        justify-content: space-between;
+        margin-bottom: 48px;
+        gap: 18px;
+      }
+
+      nav {
+        position: relative;
+        left: auto;
+        transform: none;
+        flex: 0 0 auto;
+        margin-left: auto;
+      }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--paper);
+        background-image: var(--paper-texture);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        font-size: 1.1rem;
+        text-align: center;
+        z-index: 200;
+        padding: 88px 24px 32px;
+        overflow-y: auto;
+      }
+
+      .nav-links.is-open {
+        display: flex;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .nav-links.is-open .mobile-close-btn {
+        display: flex;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      .mobile-menu-overlay {
+        display: block;
+      }
+
+      .logo-img {
+        height: 74px;
+      }
+
+      /* Hero: SVGs above text */
+      .hero {
+        padding-top: 20px;
+        padding-bottom: 70px;
+      }
+
+      .hero-bee {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 180px;
+        margin: 0 auto 16px;
+        opacity: 0.8;
+      }
+
+      .hero-butterfly {
+        display: none;
+      }
+
+      .hero-title {
+        font-size: clamp(2.2rem, 5vw, 3rem);
+      }
+
+      /* Biodiversity: tight, no idle space */
+      .biodiversity-section {
+        padding: 80px 0 90px;
+      }
+
+      .biodiversity-inner {
+        flex-direction: column;
+        text-align: left;
+        gap: 36px;
+      }
+
+      .biodiversity-visual {
+        order: -1;
+        flex: 0 0 auto;
+      }
+
+      .biodiversity-circle-wrap {
+        width: 380px;
+        height: 380px;
+      }
+
+      .biodiversity-text {
+        max-width: 100%;
+      }
+
+      .missions-section {
+        padding: 80px 0 100px;
+      }
+
+      .missions-layout {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .missions-visual {
+        flex: 0 0 auto;
+      }
+
+      .missions-image-circle {
+        width: 400px;
+        height: 400px;
+      }
+
+      .missions-content {
+        max-width: 100%;
+      }
+
+      .partners-logos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .project-image {
+        height: 210px;
+      }
+
+      .projects-shell {
+        padding: 54px 34px 46px;
+        overflow: visible;
+      }
+
+      .projects-snail {
+        width: 150px;
+        top: -110px;
+        left: -2px;
+      }
+
+      .news-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .engage-planting {
+        width: 190px;
+        bottom: -55px;
+        right: -14px;
+      }
+
+      .footer-top {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px;
+      }
+
+      .footer-credits {
+        grid-column: 1 / -1;
+      }
+
+      .footer-bottom {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .map-section {
+        padding: 100px 0 170px;
+      }
+
+      .map-title {
+        font-size: 2.2rem;
+      }
+
+      .map-placeholder {
+        min-height: 300px;
+      }
+    }
+
+    /* =============================================
+       MOBILE (max-width: 640px)
+    ============================================= */
+    @media (max-width: 640px) {
+      .header-inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 36px;
+      }
+
+      .logo-img {
+        height: 64px;
+      }
+
+      .hero {
+        padding-top: 10px;
+        padding-bottom: 50px;
+        overflow: visible;
+      }
+
+      .hero-bee {
+        width: 160px;
+        margin-bottom: 12px;
+      }
+
+      .hero-title {
+        font-size: clamp(1.9rem, 7.5vw, 2.6rem);
+      }
+
+      .hero-text {
+        font-size: 0.92rem;
+      }
+
+      .grass-strip {
+        height: 180px;
+      }
+
+      .missions-section {
+        padding: 60px 0 80px;
+      }
+
+      .missions-heading {
+        margin-bottom: 44px;
+      }
+
+      .missions-title {
+        font-size: 2.1rem;
+      }
+
+      .missions-content {
+        text-align: center;
+      }
+
+      .missions-block-title {
+        font-size: 1.5rem;
+      }
+
+      .missions-image-circle {
+        width: 280px;
+        height: 280px;
+      }
+
+      .biodiversity-section {
+        padding: 50px 0 60px;
+      }
+
+      .biodiversity-inner {
+        gap: 24px;
+      }
+
+      .biodiversity-circle-wrap {
+        width: 280px;
+        height: 280px;
+      }
+
+      .biodiversity-text {
+        text-align: center;
+        max-width: 100%;
+      }
+
+      .biodiversity-title {
+        font-size: 2rem;
+      }
+
+      .partners-section {
+        padding: 60px 0 70px;
+      }
+
+      .partners-title {
+        font-size: 2rem;
+      }
+
+      .partners-logos {
+        grid-template-columns: 1fr;
+      }
+
+      .partner-logo-img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .partner-community-icon {
+        width: 100px;
+        height: 100px;
+      }
+
+      .projects-section {
+        padding-bottom: 70px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-shell {
+        padding: 44px 22px 38px;
+        border-radius: 22px;
+        overflow: visible;
+      }
+
+      .projects-snail {
+        width: 120px;
+        top: -86px;
+        left: -2px;
+      }
+
+      .projects-title {
+        font-size: 2rem;
+      }
+
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .news-title {
+        font-size: 2rem;
+      }
+
+      .container,
+      .projects-shell,
+      .news-grid,
+      .engage-card-wrap,
+      .site-footer-inner {
+        width: calc(100% - 32px);
+      }
+
+      .engage-card {
+        padding: 40px 22px 54px;
+        border-radius: 20px;
+        overflow: visible;
+      }
+
+      .engage-card h2 {
+        max-width: 100%;
+        font-size: clamp(1.7rem, 7vw, 2.3rem);
+        margin-bottom: 18px;
+      }
+
+      .engage-card p {
+        max-width: 100%;
+        margin-bottom: 22px;
+        font-size: 0.9rem;
+      }
+
+      .engage-planting {
+        width: 150px;
+        bottom: -44px;
+        right: -10px;
+      }
+
+      .map-section {
+        padding: 70px 0 60px;
+      }
+
+      .map-title {
+        font-size: 1.8rem;
+      }
+
+      .map-placeholder {
+        min-height: 240px;
+        font-size: 0.9rem;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+      }
+
+      .footer-brand {
+        align-items: center;
+      }
+
+      .footer-connect,
+      .footer-credits {
+        align-items: center;
+      }
+
+      .footer-contact-item,
+      .footer-credit-item {
+        justify-content: center;
+        text-align: left;
+      }
+
+      .footer-social {
+        justify-content: center;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+        padding-bottom: 22px;
+      }
+    }
+
+    /* =============================================
+       SMALL MOBILE (max-width: 400px)
+    ============================================= */
+    @media (max-width: 400px) {
+      .logo-img {
+        height: 54px;
+      }
+
+      .hero-bee {
+        width: 130px;
+      }
+
+      .hero-title {
+        font-size: 1.7rem;
+      }
+
+      .missions-image-circle {
+        width: 230px;
+        height: 230px;
+      }
+
+      .biodiversity-circle-wrap {
+        width: 230px;
+        height: 230px;
+      }
+
+      .projects-snail {
+        width: 90px;
+        top: -64px;
+      }
+
+      .engage-planting {
+        width: 110px;
+        bottom: -32px;
+        right: -6px;
+      }
+
+      .footer-logo-img {
+        height: 52px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="mobile-menu-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+
+    <header>
+      <div class="header-inner container">
+        <a href="#" class="logo">
+          <img src="assets/logo.png" alt="B Corridor" class="logo-img" />
+        </a>
+
+        <nav>
+          <button class="hamburger" type="button" aria-label="Menu" onclick="toggleMobileMenu()">
+            <span></span><span></span><span></span>
+          </button>
+          <div class="nav-links" id="navLinks">
+            <button class="mobile-close-btn" type="button" aria-label="Close menu" onclick="closeMobileMenu()">
+              <svg viewBox="0 0 24 24" fill="none">
+                <line x1="6" y1="6" x2="18" y2="18" />
+                <line x1="18" y1="6" x2="6" y2="18" />
+              </svg>
+            </button>
+            <a href="#about" class="nav-link" onclick="closeMobileMenu()">About Us</a>
+            <a href="#corridor-map" class="nav-link" onclick="closeMobileMenu()">The Corridor</a>
+            <a href="#actions" class="nav-link" onclick="closeMobileMenu()">Our Actions</a>
+            <a href="#partners" class="nav-link" onclick="closeMobileMenu()">Our Partners</a>
+            <a href="#engage" class="nav-link" onclick="closeMobileMenu()">Get Involved</a>
+          </div>
+        </nav>
+
+        <div class="header-actions">
+          <a href="#engage" class="btn btn-solid">Join the B Corridor</a>
+        </div>
+      </div>
+
+      <section class="hero container">
+        <img src="assets/bee_flower.png" alt="Bee on flower" class="hero-bee" />
+        <img src="assets/butterfly.png" alt="Butterfly" class="hero-butterfly" />
+        <h1 class="hero-title">Protecting Biodiversity,<br>One Corridor at a Time</h1>
+        <p class="hero-text">
+          The B Corridor is an ecological corridor running between the Newtown and
+          Ballygunner areas of Waterford City, connecting the habitats of the Lower
+          River Suir SAC and the Knockboy Wetlands.
+        </p>
+      </section>
+    </header>
+
+    <section class="grass-strip" aria-hidden="true"></section>
+
+    <section class="missions-section" id="about">
+      <div class="container">
+        <div class="missions-heading reveal">
+          <h2 class="missions-title">About the B Corridor</h2>
+          <p class="missions-subtitle">A community collective for biodiversity since 2024</p>
+        </div>
+        <div class="missions-layout">
+          <div class="missions-visual reveal">
+            <div class="missions-image-circle"></div>
+          </div>
+          <div class="missions-content reveal">
+            <h3 class="missions-block-title">Community-Led Conservation</h3>
+            <p class="missions-text">
+              Established in 2024, the B Corridor Group is a community collective dedicated
+              to protecting and enhancing biodiversity. Its members include local residents,
+              residents' associations, St Joseph's, St Benildus and St Mary's Parish
+              Eco-Action Group, Waterford Trees for Life, Waterford City and County Council,
+              and the National Biodiversity Data Centre.
+            </p>
+            <a href="#actions" class="missions-btn">OUR BIODIVERSITY INITIATIVES <span
+                class="missions-btn-arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="biodiversity-section">
+      <div class="biodiversity-inner container">
+        <div class="biodiversity-text reveal">
+          <h2 class="biodiversity-title">Enhancing Habitats &amp; Communities</h2>
+          <p class="biodiversity-body">
+            The B Corridor Group aims to enhance habitats and communities along the
+            corridor through educational events and biodiversity initiatives such as
+            the planting of native trees, hedgerows, and pollinator-friendly patches
+            across Waterford's Newtown to Ballygunner ecological route.
+          </p>
+          <a href="#corridor-map" class="biodiversity-btn">EXPLORE THE CORRIDOR <span
+              class="biodiversity-btn-arrow">→</span></a>
+        </div>
+        <div class="biodiversity-visual reveal">
+          <div class="biodiversity-circle-wrap">
+            <div class="biodiversity-image-circle"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="map-section" id="corridor-map">
+      <div class="container">
+        <div class="map-heading reveal">
+          <h2 class="map-title">The B Corridor Route</h2>
+          <p class="map-subtitle">
+            Our ecological corridor stretches from Newtown to Ballygunner, encompassing
+            the Lower River Suir SAC and the Knockboy Wetlands — a vital link for
+            wildlife and community alike.
+          </p>
+        </div>
+        <div class="map-placeholder reveal">
+          <p>Map coming soon — graphic design in progress</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects-section" id="actions">
+      <div class="projects-shell">
+        <div class="projects-header">
+          <h2 class="projects-title">Our Actions So Far</h2>
+          <p class="projects-subtitle">Community-led initiatives along the B Corridor ecological route</p>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-image project-image--1"><span class="project-tag project-tag--blue">SIGNAGE</span></div>
+            <div class="project-body">
+              <h3 class="project-title">Maypark Trail Riverwalk Signage</h3>
+              <p class="project-details">Educational signage along the Maypark Trail currently in development to guide
+                walkers through the corridor's habitats.</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-image project-image--2"><span class="project-tag project-tag--blue">PLANTING</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Planting of Native Hedgerow in Viewmount Estate</h3>
+              <p class="project-details">Facilitated by residents and <strong>Waterford Trees for Life</strong>.</p>
+
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-image project-image--3"><span class="project-tag">GROWING</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">GIY Talk on Organic Growing and Seasonal Eating</h3>
+              <p class="project-details">Practical talk on growing your own food organically and eating with the
+                seasons.</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="projects-grid projects-grid--hidden" id="projects-extra">
+          <article class="project-card">
+            <div class="project-image project-image--4"><span class="project-tag project-tag--blue">EDUCATION</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Biodiversity Workshop with Grace O'Sullivan</h3>
+              <p class="project-details"><strong>Grace O'Sullivan</strong> – Climate &amp; social justice activist,
+                ecologist, Green Party Member, former Senator and former MEP.</p>
+
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-image project-image--5"><span class="project-tag project-tag--blue">EDUCATION</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Biodiversity Walk &amp; Talks</h3>
+              <p class="project-details"><strong>Cherrymount Estate</strong> &amp; <strong>SETU Carriganore</strong> –
+                Guided biodiversity walks and talks.</p>
+
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-image project-image--6"><span class="project-tag">COMMUNITY</span></div>
+            <div class="project-body">
+              <h3 class="project-title">Sapling Swap</h3>
+              <p class="project-details">Community sapling swap events encouraging the sharing and planting of native
+                trees along the corridor.</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="projects-grid projects-grid--hidden" id="projects-extra-2">
+          <article class="project-card">
+            <div class="project-image project-image--7"><span class="project-tag project-tag--blue">COMMUNITY</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">WhatsApp Group – Knowledge Sharing</h3>
+              <p class="project-details">A community WhatsApp group for sharing biodiversity knowledge, updates, and
+                coordinating corridor activities.</p>
+
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-image project-image--8"><span class="project-tag">POLLINATOR</span></div>
+            <div class="project-body">
+              <h3 class="project-title">Creation of Two Pollinator Patches</h3>
+              <p class="project-details"><strong>St Joseph &amp; St Benildus Church</strong>, Newtown &amp; <strong>Park
+                  Montessori School</strong>, Ballygunner.</p>
+
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-image project-image--9"><span class="project-tag project-tag--blue">HABITAT</span></div>
+            <div class="project-body">
+              <h3 class="project-title">Creating Safe Habitats for Biodiversity</h3>
+              <p class="project-details">Building safe habitats across the corridor with knowledge sharing via the
+                community WhatsApp group.</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="projects-grid projects-grid--hidden" id="projects-extra-3">
+          <article class="project-card">
+            <div class="project-image project-image--10"><span class="project-tag">COMMUNITY</span></div>
+            <div class="project-body">
+              <h3 class="project-title">Litter Picking Group</h3>
+              <p class="project-details">Regular community litter picking along the B Corridor route, keeping the
+                ecological corridor clean and safe for wildlife and residents.</p>
+
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-image project-image--11"><span class="project-tag project-tag--blue">COMMUNITY</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Community Walk of the B Corridor Route</h3>
+              <p class="project-details"><strong>Newtown to Ballygunner</strong> – Guided walk exploring the full
+                ecological corridor connecting the Lower River Suir SAC and the Knockboy Wetlands.</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="projects-bottom-cta">
+          <button class="projects-bottom-btn" type="button" onclick="toggleProjects(this)">ALL OUR PROJECTS <span
+              class="projects-bottom-btn-arrow">→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="partners-section" id="partners">
+      <div class="container">
+        <div class="partners-heading reveal">
+          <h2 class="partners-title">Our Partners</h2>
+          <p class="partners-subtitle">Together, we make biodiversity action possible</p>
+        </div>
+        <div class="partners-logos reveal">
+          <div class="partner-card">
+            <img src="assets/waterford_city_county_council.png" alt="Waterford City & County Council"
+              class="partner-logo-img" />
+            <div class="partner-badge">Waterford City &amp; County Council</div>
+          </div>
+          <div class="partner-card">
+            <img src="assets/national_biodiversity_data_centre.jpeg" alt="National Biodiversity Data Centre"
+              class="partner-logo-img" />
+            <div class="partner-badge">National Biodiversity Data Centre</div>
+          </div>
+          <div class="partner-card">
+            <img src="assets/waterford_tree_for_life.jpeg" alt="Waterford Trees for Life" class="partner-logo-img" />
+            <div class="partner-badge">Waterford Trees for Life</div>
+          </div>
+          <div class="partner-card">
+            <img src="assets/church_logo.jpg" alt="St Joseph's, St Benildus & St Mary Parish Eco-Action Group"
+              class="partner-logo-img" />
+            <div class="partner-badge">St Joseph's, St Benildus &amp; St Mary Parish Eco-Action Group</div>
+          </div>
+        </div>
+        <div class="partners-logos partners-logos--hidden" id="partners-extra">
+          <div class="partner-card">
+            <div class="partner-community-icon">
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="18" r="8" stroke="#8A6C49" stroke-width="2.5" fill="none" />
+                <circle cx="14" cy="22" r="6" stroke="#8A6C49" stroke-width="2" fill="none" />
+                <circle cx="50" cy="22" r="6" stroke="#8A6C49" stroke-width="2" fill="none" />
+                <path d="M20 52 C20 40 24 34 32 34 C40 34 44 40 44 52" stroke="#8A6C49" stroke-width="2.5" fill="none"
+                  stroke-linecap="round" />
+                <path d="M4 54 C4 44 7 38 14 38 C18 38 20 40 21 42" stroke="#8A6C49" stroke-width="2" fill="none"
+                  stroke-linecap="round" />
+                <path d="M60 54 C60 44 57 38 50 38 C46 38 44 40 43 42" stroke="#8A6C49" stroke-width="2" fill="none"
+                  stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="partner-badge">Riverview Residents Association</div>
+          </div>
+          <div class="partner-card">
+            <div class="partner-community-icon">
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="18" r="8" stroke="#8A6C49" stroke-width="2.5" fill="none" />
+                <circle cx="14" cy="22" r="6" stroke="#8A6C49" stroke-width="2" fill="none" />
+                <circle cx="50" cy="22" r="6" stroke="#8A6C49" stroke-width="2" fill="none" />
+                <path d="M20 52 C20 40 24 34 32 34 C40 34 44 40 44 52" stroke="#8A6C49" stroke-width="2.5" fill="none"
+                  stroke-linecap="round" />
+                <path d="M4 54 C4 44 7 38 14 38 C18 38 20 40 21 42" stroke="#8A6C49" stroke-width="2" fill="none"
+                  stroke-linecap="round" />
+                <path d="M60 54 C60 44 57 38 50 38 C46 38 44 40 43 42" stroke="#8A6C49" stroke-width="2" fill="none"
+                  stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="partner-badge">Local Residents &amp; Associations</div>
+          </div>
+        </div>
+        <div class="partners-cta-wrapper">
+          <button class="partners-btn" type="button" onclick="toggleSection('partners-extra', this)">ALL OUR PARTNERS
+            <span class="partners-btn-arrow">→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="engage-section" id="engage">
+      <div class="engage-card-wrap">
+        <div class="engage-card reveal">
+          <h2>Join the B Corridor community and take action for biodiversity</h2>
+          <p>Let's work together, starting now, to build a future where forests and biodiversity thrive for a more
+            sustainable world.</p>
+          <button class="engage-btn" type="button">GET INVOLVED <span class="engage-btn-arrow">→</span></button>
+          <img src="assets/planting.png" alt="Planting" class="engage-planting" />
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <div class="site-footer-inner">
+          <div class="footer-top">
+            <div class="footer-brand">
+              <a href="#"><img src="assets/logo.png" alt="B Corridor" class="footer-logo-img" /></a>
+              <p class="footer-tagline">Protecting biodiversity in Waterford,<br>one corridor at a time.</p>
+            </div>
+            <div class="footer-connect">
+              <h4 class="footer-heading">Connect</h4>
+              <div class="footer-contact-list">
+                <div class="footer-contact-item">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="M22 4L12 13 2 4" />
+                  </svg>
+                  <a href="mailto:bcorridorwaterford@gmail.com" class="footer-link">bcorridorwaterford@gmail.com</a>
+                </div>
+                <div class="footer-contact-item">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                  </svg>
+                  <span>Community updates and local biodiversity initiatives</span>
+                </div>
+              </div>
+              <div class="footer-social">
+                <a href="https://facebook.com" target="_blank" rel="noopener" class="footer-social-link"
+                  aria-label="Facebook">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path
+                      d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                  </svg>
+                </a>
+                <a href="mailto:bcorridorwaterford@gmail.com" class="footer-social-link" aria-label="Email">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="M22 4L12 13 2 4" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="footer-credits">
+              <h4 class="footer-heading">Project Info</h4>
+              <div class="footer-credit-list">
+                <div class="footer-credit-item">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20h9" />
+                    <path d="M12 4h9" />
+                    <path d="M4 9h16" />
+                    <path d="M4 15h16" />
+                  </svg>
+                  <span>B Corridor community collective, Waterford</span>
+                </div>
+                <div class="footer-credit-item">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2v20" />
+                    <path d="M2 12h20" />
+                  </svg>
+                  <span>Website created by Alessio Coci</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <span>© 2026 B Corridor. All rights reserved.</span>
+            <span>Built for community biodiversity action in Waterford.</span>
+          </div>
+        </div>
+      </footer>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closeMobileMenu();
+    });
+
+    function toggleMobileMenu() {
+      var btn = document.querySelector('.hamburger');
+      var nav = document.getElementById('navLinks');
+      var overlay = document.getElementById('mobileOverlay');
+      var isOpen = btn.classList.contains('is-open');
+      if (isOpen) { closeMobileMenu(); }
+      else {
+        btn.classList.add('is-open');
+        nav.classList.add('is-open');
+        overlay.classList.add('is-active');
+        document.body.classList.add('menu-open');
+      }
+    }
+
+    function closeMobileMenu() {
+      var btn = document.querySelector('.hamburger');
+      var nav = document.getElementById('navLinks');
+      var overlay = document.getElementById('mobileOverlay');
+      if (btn) btn.classList.remove('is-open');
+      if (nav) nav.classList.remove('is-open');
+      if (overlay) overlay.classList.remove('is-active');
+      document.body.classList.remove('menu-open');
+    }
+
+    function toggleSection(id, btn) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var isVisible = el.classList.contains('is-visible');
+      el.classList.toggle('is-visible');
+      var arrow = btn.querySelector('span');
+      if (arrow) { arrow.textContent = isVisible ? '\u2192' : '\u2191'; }
+    }
+
+    function toggleProjects(btn) {
+      var el1 = document.getElementById('projects-extra');
+      var el2 = document.getElementById('projects-extra-2');
+      var el3 = document.getElementById('projects-extra-3');
+      if (!el1) return;
+      var isVisible = el1.classList.contains('is-visible');
+      el1.classList.toggle('is-visible');
+      if (el2) el2.classList.toggle('is-visible');
+      if (el3) el3.classList.toggle('is-visible');
+      var arrow = btn.querySelector('span');
+      if (arrow) { arrow.textContent = isVisible ? '\u2192' : '\u2191'; }
+    }
+
+    (function () {
+      var reveals = document.querySelectorAll('.reveal');
+      if (!reveals.length) return;
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+</body>
+
+</html>
